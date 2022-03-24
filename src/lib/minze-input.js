@@ -7,21 +7,34 @@ export class MinzeInput extends MinzeElement {
 
   static observedAttributes = ['placeholder', 'type', 'name']
 
+  testeDeAlert = () => {
+    if (this.value === '') {
+      alert("Campo não podeficar em branco")
+    }
+    else {
+      alert(this.value)
+    }
+  }
+
   html = () => `
    <input
    ${this.attrs
       .map((attr) => (this[attr] ? `${attr}="${this[attr]}"` : ''))
       .join(' ')}
-    value="${this.value}"
-   />
+    value="${this.value}"/>   
+   <button 
+   class="button" 
+   type="submit">
+   Salvar
+   </button>
    `
   handleInput = (event) => {
     this.value = event.target.value
-
-    console.log(this.value)
   }
-  eventListeners = [['input', 'keyup', this.handleInput]]
-
+  eventListeners = [
+    ['input', 'keyup', this.handleInput],
+    ['.button', 'click', this.testeDeAlert]
+  ]
 }
 
 Minze.defineAll([MinzeElement])
