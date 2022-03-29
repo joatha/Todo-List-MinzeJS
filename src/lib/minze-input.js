@@ -7,7 +7,13 @@ export class MinzeInput extends MinzeElement {
 
 
   onStart = () => {
-    localStorage.setItem('msg', `${this.value}`)
+
+    const updateLocalStorage = () => {
+      localStorage.setItem('msg', JSON.stringify(this.value))
+    }
+    const updateLocal = [{ updateLocalStorage }]
+
+    updateLocal
 
   }
 
